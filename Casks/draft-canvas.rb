@@ -1,9 +1,9 @@
 cask "draft-canvas" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.14.0"
-  sha256 arm:   "08e07e20dfcc5f77e53d82aa4e968e68cc6f5171bfefcf80f46988e3fe36ad9d",
-         intel: "2e18da7bdcd05a26bf7016bfb5dcf0ea4dd71ef7c3f8c9b25ef342fb9e1ba0cf"
+  version "1.15.0"
+  sha256 arm:   "fcda9a2ec5d53e0e30ce3556e34afbd4dfd37fdf86366eebfc15db03cf6015d1",
+         intel: "b87d8a5f376cceb94f9abef9bd1f50292b38f3ea9f468f7a2d7d622a3bca22f0"
 
   url "https://github.com/acltabontabon/draft-canvas/releases/download/v#{version}/Draft-Canvas_#{version}_macOS_#{arch}.dmg"
   name "Draft Canvas"
