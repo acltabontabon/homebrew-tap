@@ -1,37 +1,74 @@
-# Alvin's Homebrew tap
+<p align="center">
+  <img src="assets/tap-banner.svg" alt="Homebrew tap — Draft Canvas, Habi, and Scuttle." width="100%">
+</p>
 
-Install macOS apps from this shared tap:
+<p align="center">
+  macOS apps, installed with <a href="https://brew.sh">Homebrew</a>.
+</p>
 
-| App | What it does | Install |
+### [Draft Canvas](https://acltabontabon.com/draft-canvas/)
+
+Draw software architecture and explain how it works.
+
+```sh
+brew install --cask acltabontabon/tap/draft-canvas
+```
+
+[Source & releases ↗](https://github.com/acltabontabon/draft-canvas)
+
+### [Habi](https://acltabontabon.com/habi/)
+
+Find agent skills for your repository and preview them before installation.
+
+```sh
+brew install --cask acltabontabon/tap/habi
+```
+
+[Source & releases ↗](https://github.com/acltabontabon/habi)
+
+### [Scuttle](https://acltabontabon.com/scuttle/)
+
+Organize scattered files and review cleanup with a recoverable drawer.
+
+```sh
+brew install --cask acltabontabon/tap/scuttle
+```
+
+[Source & releases ↗](https://github.com/acltabontabon/scuttle)
+
+---
+
+<details>
+<summary>Installation, compatibility, and updates</summary>
+
+Install [Homebrew](https://brew.sh), then run a command above. Homebrew adds this tap automatically, selects the matching installer, verifies its SHA-256 checksum, and puts the app in **Applications**.
+
+| App | Apple silicon | Intel |
 | --- | --- | --- |
-| [Habi](https://github.com/acltabontabon/habi) | Finds which agent skills fit your repository and installs them after a preview | `brew install --cask acltabontabon/tap/habi` |
-| [Scuttle](https://github.com/acltabontabon/scuttle) | Gathers scattered files and reviews cleanup with a recoverable drawer | `brew install --cask acltabontabon/tap/scuttle` |
-| [Draft Canvas](https://github.com/acltabontabon/draft-canvas) | Draws software architecture and explains how it works | `brew install --cask acltabontabon/tap/draft-canvas` |
+| Draft Canvas | macOS 12+ | macOS 12+ |
+| Habi | macOS 11+ | macOS 11+ |
+| Scuttle | macOS 11+ | macOS 10.15+ |
 
-Draft Canvas supports Apple Silicon and Intel Macs on macOS 12 or later. Its cask selects the
-matching installer and checks its SHA-256 before installing `Draft Canvas.app` in Applications.
-See [installation and updates](https://github.com/acltabontabon/draft-canvas/blob/main/docs/guides/desktop.md#installing).
+These are the apps’ minimum versions; [Homebrew has its own requirements](https://docs.brew.sh/Installation). Habi uses a universal installer; the other apps have separate installers for each architecture.
 
-Scuttle supports Apple silicon Macs on macOS 11 or later and Intel Macs on macOS 10.15 or later.
-Its cask selects the matching installer and verifies its SHA-256 before installing `Scuttle.app`.
-See [installation](https://github.com/acltabontabon/scuttle/blob/main/docs/installing.md).
+**First launch.** These builds may lack Apple signing or notarization. If macOS blocks an app, try opening it once, then **System Settings → Privacy & Security → Open Anyway** if offered. See [Apple’s instructions](https://support.apple.com/en-us/102445) for your macOS version. Homebrew preserves Gatekeeper checks.
 
-For builds without Apple signing and notarization, macOS asks you to confirm the first launch:
-open the app once, then **System Settings → Privacy & Security → Open Anyway** if prompted.
-Homebrew preserves Gatekeeper checks. These apps update themselves using updates signed by their
-own keys. To explicitly include a self-updating app in a Homebrew upgrade, use
-`brew upgrade --cask --greedy acltabontabon/tap/draft-canvas` (or `habi` or `scuttle`).
+**Updates.** All three apps have their own updater. To update through Homebrew, include `--greedy`:
 
-Uninstalling a cask leaves application data alone. Draft Canvas diagrams, Quick Drafts and recovery
-data are preserved; Scuttle's drawer, organization history and settings are preserved; Habi's
-existing optional cleanup rules leave its data folder alone too.
+```sh
+brew update
+brew upgrade --cask --greedy acltabontabon/tap/draft-canvas
+```
 
-Habi's and Draft Canvas's release workflows each write their own cask after a stable release
-is published. Do not edit their generated version, URL or checksum fields by hand. Draft Canvas verifies both published DMGs,
-audits the generated cask, refuses downgrades and retries concurrent tap pushes. For retry and
-credential setup, see
-[Homebrew releases](https://github.com/acltabontabon/draft-canvas/blob/main/docs/guides/desktop.md#homebrew-releases).
+Replace `draft-canvas` with `habi` or `scuttle` as needed.
 
-Scuttle’s cask currently tracks the published stable release manually. For each stable release,
-update its version and both architecture checksums after verifying the published DMGs against
-`SHA256SUMS.txt`, then run Homebrew style and cask audit checks.
+**Uninstall.** Run `brew uninstall --cask acltabontabon/tap/draft-canvas` to remove the app. A normal uninstall preserves your data: Draft Canvas diagrams and recovery data, Habi’s skills and journal, and Scuttle’s drawer, history, and settings.
+
+**Support.** [Report installation problems here](https://github.com/acltabontabon/homebrew-tap/issues/new), with the command, error output, app version, macOS version, and Mac architecture. For app behavior or ideas, use the app’s source repository above.
+
+</details>
+
+<p align="center">
+  <a href="https://github.com/acltabontabon/homebrew-tap/actions/workflows/tap-checks.yml">Tap checks</a> ·
+  <a href="docs/maintenance.md">Maintenance notes</a>
+</p>

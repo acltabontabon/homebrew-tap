@@ -1,0 +1,62 @@
+name: Tap checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 3 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tap-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  HOMEBREW_NO_ANALYTICS: "1"
+  HOMEBREW_NO_AUTO_UPDATE: "1"
+
+jobs:
+  casks:
+    name: Validate casks and installers
+    runs-on: macos-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out the tap
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Update Homebrew
+        run: brew update
+
+      - name: Register the checked-out revision as a local tap
+        run: |
+          brew tap local/tap-check "$GITHUB_WORKSPACE"
+          brew trust --tap local/tap-check
+
+      - name: Check Homebrew style
+        run: brew style local/tap-check
+
+      - name: Load casks for Apple silicon and Intel
+        run: brew readall --arch=all local/tap-check
+
+      - name: Audit casks and verify published installers
+        env:
+          HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
+        run: |
+          casks=()
+          for file in Casks/*.rb; do
+            casks+=("local/tap-check/$(basename "$file" .rb)")
+          done
+          brew fetch --cask --arch=all --retry "${casks[@]}"
+          # Fully qualified cask names make core formula name collisions irrelevant.
+          # This audit otherwise clones all of homebrew/core, even without --strict.
+          brew audit --cask --online --arch=all --except=token_conflicts "${casks[@]}"
+
+      - name: Remove the local tap
+        if: always()
+        run: brew untap local/tap-check

@@ -1,0 +1,10 @@
+.DS_Store
+._*
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.dmg
+*.app/
+*.app.tar.gz
