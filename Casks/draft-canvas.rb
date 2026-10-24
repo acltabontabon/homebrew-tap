@@ -1,14 +1,14 @@
 cask "draft-canvas" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.15.2"
-  sha256 arm:   "5f5cdf640f13ba495f1e56ecd2e51826680114ebb52ad291faf0f5c0951c5beb",
-         intel: "451436facc06496f4d8365669eb551b5ac188970ed805eefc8b64d8ceb6400c6"
+  version "1.16.0"
+  sha256 arm:   "a366eff4fe7447b7b08078b53c4ea0669a71a1977d1e0ab3057ab3c3ea6b606f",
+         intel: "0653b39accbbdde1abe75b5f8fa79e3883f524c98a50cb1276cc0ffc24c60c54"
 
   url "https://github.com/acltabontabon/draft-canvas/releases/download/v#{version}/Draft-Canvas_#{version}_macOS_#{arch}.dmg"
   name "Draft Canvas"
   desc "Draw software architecture and explain how it works"
-  homepage "https://acltabontabon.com/draft-canvas/"
+  homepage "https://draftcanvas.dev/"
 
   livecheck do
     url :url
