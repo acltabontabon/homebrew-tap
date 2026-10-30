@@ -1,6 +1,6 @@
 cask "habi" do
-  version "0.3.0"
-  sha256 "d8d11461313bdb8efd4330f63078f5051ee02dee993accfacebf6e4637fac373"
+  version "0.4.0"
+  sha256 "c77edb83eb487138eede406f49fadc781dec00c72d682e8d136f2e5957a438f7"
 
   url "https://github.com/acltabontabon/habi/releases/download/v#{version}/Habi_#{version}_universal.dmg"
   name "Habi"
